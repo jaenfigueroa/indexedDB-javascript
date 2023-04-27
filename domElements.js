@@ -1,1 +1,0 @@
-export const btnSave = document.getElementById('btn-save')

@@ -1,6 +1,7 @@
 const indexedDB = window.indexedDB
+const formulario = document.getElementById('form')
 
-if (indexedDB) {
+if (indexedDB && form) {
   let db
 
   //ABRIR LA BASE DE DATOS (NOMBRE, VERSION)
@@ -31,8 +32,11 @@ if (indexedDB) {
     */
 
     //CREAR UN ALMACEN DE OBJETOS (PODEMOS CREAR LA CANTIDAD QUE QUERAMOS)
-    const objectStore = db.createObjectStore('tareas')
-    const objectStore2 = db.createObjectStore('tareas2')
+    const objectStore = db.createObjectStore('tareas', {
+      // autoIncrement: true //CON ESTO , DECIMOS QUE LA CLAVE SE AUTOGENERE
+      keyPath: 'taskTitle' // ESTA ES OTRA FORMA DDE DAR CLAVE, EN ESTA CASO LE INDICAMOS QUE VALOR DEL OBJETO QUE QUEREMOS GUARDAR SERA LA CLAVE
+    })
+    console.log('ALMACEN CREADO', objectStore)
   }
 
   //EVENTO DE ERROR
@@ -40,6 +44,28 @@ if (indexedDB) {
     console.log('error', error)
   }
 
+  const addData = (data) => {
+    //CREAMOS UNA TRASACCION
+    const transaction = db.transaction(['tareas'], 'readwrite') // (ALMACEN DE DATOS, MODO DE TRASACCION (readonly, readwrite) )
+
+    //ABRIR EL ALMACEN DE DATO
+    const objectStore = transaction.objectStore('tareas')
+
+    const request = objectStore.add(data) //AQUI COMO SEF¿GUNDO PARAMETRO VA LA CLAVE - PERO AHORA SE AUTOGENERA
+    console.log(request)
+  }
+
+  formulario.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const data = {
+      taskTitle: e.target.task.value,
+      taskPriority: e.target.priority.value
+    }
+
+    // console.log(data)
+    addData(data)
+  })
 
 }
 
