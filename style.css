@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+  font-family: sans-serif;
+}
+html {
+  font-size: 62.5%;
+}
+ul,
+ol {
+  list-style: none;
+}
+
+/* ////////////////////////// */
+form{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+label,
+input,
+button,
+select{
+  padding: .5rem 1rem;
+}
+label{
+  font-size: 2.2rem;
+}
