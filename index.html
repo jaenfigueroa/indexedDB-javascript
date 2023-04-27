@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,24 @@
   <title>Document</title>
   <script type="module" src="main.js" defer></script>
 </head>
+
 <body>
-  <button id="btn-save">Guardar</button>
+  <form id="form" class="form">
+
+    <label for="task">Tarea</label>
+
+    <input type="text" name="task">
+
+    <select name="priority">
+      <option value="bajo">Bajo</option>
+      <option value="medio">Medio</option>
+      <option value="alto">Alto</option>
+    </select>
+
+    <button class="button">Agregar tarea</button>
+  </form>
+
+  <div class="tasks"></div>
 </body>
+
 </html>
